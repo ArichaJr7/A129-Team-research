@@ -14,10 +14,13 @@ str(iotex) # shows Date is converted
 
 #Year need to be extracted from the dataset to help enable to better filtering later on
 
-iotex$Year <- as.numeric(iotex$Date, '%Y') #This does not convert the year into a date format
+iotex$Year <- as.numeric(iotex$Date, '%Y') #This does not convert the year into a date format. I want the numerical value to be displayed like '2018'
 
 str(iotex$Year) #num
 
+iotex$Year <- as.numeric(format(iotex$Date, '%Y')) #The number was formatted into a date datatype
+
+str(iotex$Year) # This confirms that the datatype was changed
 
 # Clear environment
 rm(list = ls()) 
