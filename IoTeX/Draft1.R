@@ -8,7 +8,9 @@ str(iotex) # shows the data type of the data
 
 #The 'Date' Datatype is chr and I want to change this to a date datatype
 
+iotex$Date <- as.Date(iotex$Date) #This takes the date column and coverts it into a 'Date' datatype (Format is YYYY-MM-DD)
 
+str(iotex) # shows Date is converted
 
 # Clear environment
 rm(list = ls()) 
