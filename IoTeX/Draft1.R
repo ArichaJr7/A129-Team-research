@@ -1,5 +1,6 @@
 
 library(datasets) # Initialises the 'dataset' package
+setwd("~/Library/CloudStorage/OneDrive-UniversityofHertfordshire/Team/Testing")
 iotex <- read.csv('IoTeX.csv') # Gets the dataset from the folder and names the object 'iotex' for userbility
 head(iotex) # shows the first 6 rows
 summary(iotex) # gives a summary of the dataset
