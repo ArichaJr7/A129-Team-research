@@ -25,8 +25,8 @@ str(iotex$Year) # This confirms that the datatype was changed
 
 #I need to add a column for seasons but I need to make a function to check the month in the date column
 #then depending on that it will add the corresponding season. 
-get_season <- function(date){
-  
+get_season <- function(date){ #defined get
+  month <- as.numeric(format(date, "%m")) #
 }
 
 
