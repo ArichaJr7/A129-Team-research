@@ -12,6 +12,13 @@ iotex$Date <- as.Date(iotex$Date) #This takes the date column and coverts it int
 
 str(iotex) # shows Date is converted
 
+#Year need to be extracted from the dataset to help enable to better filtering later on
+
+iotex$Year <- as.numeric(iotex$Date, '%Y') #This does not convert the year into a date format
+
+str(iotex$Year) #num
+
+
 # Clear environment
 rm(list = ls()) 
 # Clear packages
