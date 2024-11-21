@@ -1,26 +1,16 @@
 
-library(datasets) # Initialises the 'dataset' package
-# This will be deleted to be more dynamic. I dont feel like this will be able to open is a lecturer downloads this repo: setwd("~/Library/CloudStorage/OneDrive-UniversityofHertfordshire/Team/Testing") #set the working directory to the github folder which is were the dataset and this file is stored in
-iotex <- read.csv('IoTeX.csv') # Gets the dataset from the folder and names the object 'iotex' for userbility
+iotex <- read.csv('IoTeX.csv') # Gets the dataset from the folder and names the object 'iotex' for userbillity
 head(iotex) # shows the first 6 rows
 summary(iotex) # gives a summary of the dataset
-
 str(iotex) # shows the data type of the data
 
 #The 'Date' Datatype is chr and I want to change this to a date datatype
 
 iotex$Date <- as.Date(iotex$Date) #This takes the date column and coverts it into a 'Date' datatype (Format is YYYY-MM-DD)
-
 str(iotex) # shows Date is converted
 
 #Year need to be extracted from the dataset to help enable to better filtering later on
-
-### Will delete this code on the next commit as it did not work as intended: iotex$Year <- as.numeric(iotex$Date, '%Y') #This does not convert the year into a date format. I want the numerical value to be displayed like '2018'
-
-### Will delete this code on the next commit as it did not work as intended: str(iotex$Year) # check to see is the year was converted into a numeric year value
-
 iotex$Year <- as.numeric(format(iotex$Date, '%Y')) #The number was formatted into a date datatype
-
 str(iotex$Year) # This confirms that the datatype was changed
 
 #I need to add a column for seasons but I need to make a function to check the month in the date column
@@ -33,24 +23,14 @@ get_season <- function(date) {                       # defined get_season functi
   else if (month %in% c(6, 7, 8)) return("Summer")   # if month is Jun, Jul or Aug then it will return 'Summer' in the row entry
   else return("Autumn")                              # if month is anything else then it will return 'Autumn' in the row entry
 }
+
 iotex$Season <- sapply(iotex$Date, get_season)       # sapply() applies the function to the date column and creates a new column called season
-                                                    
+
 str(iotex)                                           # check to see if the seasons column was successfully added to data set
+head(iotex)                                          # Check the first few rows of the modified dataset
+table(iotex$Season)                                  # Confirm the distribution of seasons
 
 
 
 
-
-
-#Will delete this code on the next commit as it is not needed:
-
-# Clear environment
-rm(list = ls()) 
-# Clear packages
-detach("package:datasets", unload = TRUE)  # For base
-# Clear plots
-dev.off()  # But only if there IS a plot
-# Clear console
-cat("\014")  # ctrl+L
-# Clear mind :)
 
