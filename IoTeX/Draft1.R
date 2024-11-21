@@ -31,6 +31,7 @@ head(iotex)                                          # Check the first few rows 
 table(iotex$Season)                                  # Confirm the distribution of seasons
 
 
-
+iotex$Daily_Change <- iotex$Close - iotex$Open       # Daily Price Change column was added taking the 'Open' price away from the 'Close' price
+str(iotex)                                           # Check to ensure column was added correctly
 
 
