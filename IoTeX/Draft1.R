@@ -35,3 +35,28 @@ iotex$Daily_Change <- iotex$Close - iotex$Open       # Daily Price Change column
 str(iotex)                                           # Check to ensure column was added correctly
 
 
+a <- iotex$Daily_Change                                         # Extract the data
+
+
+hist(a,                                                         # Create a histogram
+     30,                                                        # num of bins
+     freq = FALSE,                                              # Set to density not freqency
+     main = "Histogram of Daily Price Change with Bell Curve",  # Title
+     xlab = "Daily Price Change",                               # X-axis label
+     ylab = "Density",  # Update label to reflect density       # Y-axis label
+     col = "azure")
+
+# Calculate the mean and standard deviation
+mn <- mean(a)                                                   # Mean of daily price change
+std_dev <- sd(a)                                                # Standard deviation of daily price change
+
+
+x <- seq(min(a), max(a), length.out = 250)                      # Define the x range for the bell curve
+
+
+yn <- dnorm(x, mean = mn, sd = std_dev)                         # Generate normal distribution values
+
+
+lines(x, yn, col = "red", lwd = 2)                              # Add the bell curve to the histogram
+
+
