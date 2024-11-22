@@ -37,10 +37,6 @@ str(iotex)                                           # Check to ensure column wa
 
 a <- iotex$Daily_Change                                         # Extract the data
 
-min_val <- min(a)
-max_val <- max(a)
-
-
 hist(a,                                                         # Create a histogram
      66,                                                        # num of bins
      freq = FALSE,                                              # Set to density not freqency
@@ -53,14 +49,21 @@ hist(a,                                                         # Create a histo
 mn <- mean(a)                                                   # Mean of daily price change
 std_dev <- sd(a)                                                # Standard deviation of daily price change
 
-
 x <- seq(min(a), max(a), length.out = 250)                      # Define the x range for the bell curve
-
-
 yn <- dnorm(x, mean = mn, sd = std_dev)                         # Generate normal distribution values
-
-
 lines(x, yn, col = "red", lwd = 2)                              # Add the bell curve to the histogram
 
 summary(iotex$Daily_Change)
 
+bpx <- iotex$Season
+bpy <- iotex$Daily_Change
+
+
+plot(bpy ~ bpx,
+     main = "Boxplot of Daily Price Change by Season",
+     xlab = 'Season',
+     ylab = 'Daily Price Change',
+     pch = 19,
+     frame = T,
+     ylim = c(-0.0075, 0.006) # This is the lower and upper limit values for daily price change
+     )
