@@ -27,7 +27,7 @@ get_season <- function(date) {                       # defined get_season functi
 iotex$Season <- sapply(iotex$Date, get_season)       # sapply() applies the function to the date column and creates a new column called season
 
 str(iotex)                                           # check to see if the seasons column was successfully added to data set
-head(iotex)                                          # Check the first few rows of the modified dataset
+head(iotex,2)                                          # Check the first few rows of the modified dataset
 table(iotex$Season)                                  # Confirm the distribution of seasons
 
 
