@@ -37,9 +37,12 @@ str(iotex)                                           # Check to ensure column wa
 
 a <- iotex$Daily_Change                                         # Extract the data
 
+min_val <- min(a)
+max_val <- max(a)
+
 
 hist(a,                                                         # Create a histogram
-     30,                                                        # num of bins
+     66,                                                        # num of bins
      freq = FALSE,                                              # Set to density not freqency
      main = "Histogram of Daily Price Change with Bell Curve",  # Title
      xlab = "Daily Price Change",                               # X-axis label
@@ -59,4 +62,5 @@ yn <- dnorm(x, mean = mn, sd = std_dev)                         # Generate norma
 
 lines(x, yn, col = "red", lwd = 2)                              # Add the bell curve to the histogram
 
+summary(iotex$Daily_Change)
 
