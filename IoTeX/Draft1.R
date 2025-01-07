@@ -1,3 +1,8 @@
+# Load necessary libraries
+library(ggplot2)
+library(dplyr)
+
+
 
 iotex <- read.csv('IoTeX.csv') # Gets the dataset from the folder and names the object 'iotex' for userbillity
 head(iotex) # shows the first 6 rows
@@ -41,7 +46,7 @@ hist(a,                                                         # Create a histo
      66,                                                        # num of bins
      freq = FALSE,                                              # Set to density not freqency
      main = "Histogram of Daily Price Change with Bell Curve",  # Title
-     xlab = "Daily Price Change",                               # X-axis label
+     xlab = "Daily Price Change ($)",                               # X-axis label
      ylab = "Density",  # Update label to reflect density       # Y-axis label
      col = "azure")
 
@@ -59,11 +64,34 @@ bpx <- iotex$Season
 bpy <- iotex$Daily_Change
 
 
-plot(bpy ~ bpx,
+boxplot(bpy ~ bpx,
      main = "Boxplot of Daily Price Change by Season",
      xlab = 'Season',
-     ylab = 'Daily Price Change',
+     ylab = 'Daily Price Change ($)',
      pch = 19,
      frame = T,
      ylim = c(-0.0075, 0.006) # This is the lower and upper limit values for daily price change
      )
+
+
+iotex$Season <- as.factor(iotex$Season)
+
+# Pairwise Wilcoxon test for all seasons with Bonferroni correction
+pairwise_wilcox <- pairwise.wilcox.test(iotex$Daily_Change, iotex$Season, p.adjust.method = "bonferroni")
+print(pairwise_wilcox)
+
+
+# Pairwise T-test
+pairwise_ttest <- pairwise.t.test(iotex$Daily_Change, iotex$Season, p.adjust.method = "bonferroni")
+print(pairwise_ttest)
+
+
+
+# Boxplot for visualization
+ggplot(iotex, aes(x = Season, y = Daily_Change)) +
+  geom_boxplot() +
+  labs(title = "IoTeX Daily Price Change by Season",
+       x = "Season",
+       y = "Daily Price Change ($)") +
+  theme_minimal()
+
